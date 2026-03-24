@@ -1,0 +1,65 @@
+[
+  {
+    "id": "1",
+    "topic": "Diet",
+    "dosha": "Vata",
+    "content": "According to the Charaka Samhita, a Vata-pacifying diet should consist of warm, freshly cooked foods that are nourishing and easy to digest. Focus on sweet, sour, and salty tastes. Include healthy oils like ghee or sesame oil to reduce internal dryness. Avoid cold, raw, and highly processed foods.",
+    "source": "Charaka Samhita"
+  },
+  {
+    "id": "2",
+    "topic": "Lifestyle",
+    "dosha": "Pitta",
+    "content": "Sushruta Samhita emphasizes that Pitta types should avoid extreme heat and practice moderation. Cooling activities like walking in the moonlight, spending time near water, and practicing Sheetali breathwork are beneficial. Diet should favor sweet, bitter, and astringent tastes while avoiding spicy, sour, and fermented foods.",
+    "source": "Sushruta Samhita"
+  },
+  {
+    "id": "3",
+    "topic": "Herbs",
+    "dosha": "Kapha",
+    "content": "Ashtanga Hridaya recommends pungent, bitter, and astringent herbs to balance Kapha. Triphala is excellent for overall balance. Ginger, black pepper, and pippali (Trikatu) help ignite the digestive fire (Agni) and reduce mucus accumulation in Kapha dosha.",
+    "source": "Ashtanga Hridaya"
+  },
+  {
+    "id": "4",
+    "topic": "Hair Care",
+    "dosha": "Pitta-Vata",
+    "content": "In Ayurveda, hair fall (Khalitya) and premature graying (Palitya) are primarily caused by an aggravation of Pitta dosha combined with Vata at the hair roots. Charaka Samhita recommends regular scalp massage (Shiro Abhyanga) with cooling medicated oils like Bhringaraj or Amla oil. A diet reducing excessively spicy, salty, and sour foods is necessary to cool Pitta.",
+    "source": "Charaka Samhita"
+  },
+  {
+    "id": "5",
+    "topic": "Digestion",
+    "dosha": "General",
+    "content": "Sushruta Samhita details that Agni (digestive fire) is the root of health. When Agni is weak, Ama (toxic residue) forms. To clear Ama and support digestion, one should drink warm water, fast or eat light meals like Kitchari, and use digestive spices such as cumin, coriander, and fennel.",
+    "source": "Sushruta Samhita"
+  },
+  {
+    "id": "6",
+    "topic": "Sleep",
+    "dosha": "Vata",
+    "content": "For insomnia (Anidra), which is a Vata disorder, Ashtanga Hridaya suggests consuming warm buffalo milk or cow milk boiled with a pinch of nutmeg before bed. Application of oil on the soles of the feet and head (Padabhyanga and Shirobhyanga) heavily promotes sound sleep.",
+    "source": "Ashtanga Hridaya"
+  },
+  {
+    "id": "7",
+    "topic": "Daily Routine",
+    "dosha": "General",
+    "content": "Ayurveda strongly recommends Dinacharya (daily routine). Waking up before sunrise (Brahma Muhurta) aligns the body with nature's rhythms. Scraping the tongue, drinking warm water, and performing self-massage with warm oil (Abhyanga) are fundamental practices for maintaining doshic balance.",
+    "source": "Charaka Samhita"
+  },
+  {
+    "id": "8",
+    "topic": "Skin Care",
+    "dosha": "Pitta",
+    "content": "According to the Sushruta Samhita, skin conditions like acne and rashes are often caused by Rakta (blood) and Pitta vitiation. Herbal pastes containing sandalwood, neem, and turmeric are highly effective. Internally, bitter tonics like aloe vera and neem help purify the blood.",
+    "source": "Sushruta Samhita"
+  },
+  {
+    "id": "9",
+    "topic": "Joint Care",
+    "dosha": "Vata",
+    "content": "Joint cracking, pain, and arthritis (Sandhigata Vata) are treated by pacifying Vata. Ashtanga Hridaya advises external application of Mahanarayana oil or sesame oil, combined with internal administration of ghee and anti-inflammatory herbs like Ashwagandha and Shallaki (Boswellia).",
+    "source": "Ashtanga Hridaya"
+  }
+]
