@@ -1,46 +1,29 @@
-# 🌿 Sattva-Prana RAG AI - Ayurvedic Knowledge Assistant
+# 🌿 Sattva-Prana Enterprise - RAG Integrated Clinical Platform
 
-Sattva-Prana RAG AI is an advanced GenAI application utilizing Retrieval-Augmented Generation (RAG) to provide highly accurate, context-aware answers to Ayurvedic queries. By embedding authentic knowledge from ancient texts (like the Charaka Samhita) using Sentence Transformers and searching via FAISS, the system operates as a domain-expert AI chatbot with zero hallucinations.
+Sattva-Prana Enterprise is a top-tier SaaS AI system combining ancient Ayurvedic principles from the Brihatrayi (Charaka, Sushruta, Ashtanga Hridaya) with cutting-edge Machine Learning. 
 
-## 🚀 Core Features
-- **📚 RAG Knowledge Base:** Structured JSON database storing authentic Ayurvedic principles.
-- **🧠 Vector Search Engine:** Converts domain knowledge into high-dimensional embeddings using `sentence-transformers` and performs sub-millisecond similarity searches using Facebook AI Similarity Search (`FAISS`).
-- **💬 ChatGPT-Like UI:** A sleek, dark-themed Streamlit interface featuring stateful session chat history.
-- **🔍 Context Dashboard:** A dedicated side-panel visualizing exactly which database chunks the AI retrieved to build its answer, ensuring complete transparency.
-- **🤖 Contextual Text Generation:** OpenAI GPT models synthesize the retrieved vectors into seamless, natural language responses.
+It seamlessly melds a rule-based NLP dosha-analytics dashboard with a stateful FAISS Retrieval-Augmented Generation (RAG) chatbot, encapsulated inside a premium ChatGPT-styled UI.
 
-## 📁 Project Structure
+## 🚀 Core Platform Features
+- **📊 Real-time Dosha Analytics Dashboard:** Dynamically measures symptomatic keywords to produce live Vata/Pitta/Kapha variance and a generalized "Wellness Index".
+- **🧠 Semantic RAG Engine:** Uses `sentence-transformers` nested over `FAISS` to execute hyper-fast similarity searches over Ayurvedic literature. Calculates mathematical Pseudo-Confidence intervals for transparency.
+- **💬 ChatGPT Workspace UI:** Multi-threaded session history, secure login wall (`admin`/`admin` gateway), responsive dark mode styling, and persistent context caching.
+- **⚕️ Hybrid Modality AI:** Functions flawlessly in a 100% offline Extractive Mode pulling direct citations, but can dynamically switch into an OpenAI Generative mode to synthesize the texts into actionable protocols.
+
+## 📁 Repository Architecture
 ```text
-Sattva-Prana RAG AI/
-├── app.py             # Main Streamlit application with Chat UI
-├── rag_utils.py       # Embedding generation and FAISS retrieval logic
-├── knowledge.json     # The unstructured/structured knowledge base
-├── requirements.txt   # Python dependencies
+Sattva-Prana-Enterprise/
+├── app.py             # Advanced UI, Auth, and Dashboard logic
+├── rag_utils.py       # FAISS Vector Search and MiniLM Embeddings
+├── utils.py           # NLP Dosha detection and wellness scoring
+├── data.py            # Static NLP word banks
+├── knowledge.json     # Authentic Database from the Brihatrayi
+├── requirements.txt   # Dependencies
 └── README.md          # Documentation
 ```
 
-## ⚙️ Step-by-Step Setup
-1. **Navigate to Project Directory:**
-   ```bash
-   cd "Sattva-Prana Pro-AI-Powered Ayurvedic Wellness Assistant"
-   ```
-2. **Setup Virtual Environment:**
-   ```bash
-   python -m venv .venv
-   source .venv/bin/activate  # Windows: .venv\Scripts\activate
-   ```
-3. **Install Dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
-4. **Run Application:**
-   ```bash
-   streamlit run app.py
-   ```
-5. **Configure AI:** Input your OpenAI API Key into the sidebar settings inside the web app.
-
-## 🧠 What is RAG? (Retrieval-Augmented Generation)
-Standard LLMs (like ChatGPT) might hallucinate or answer generally. RAG solves this by giving the AI an "open book" test. 
-1. **Retrieval**: When you ask "What is a Vata diet?", the system searches our local database (`knowledge.json`) for paragraphs mathematically closest to your question.
-2. **Augmentation**: It grabs those paragraphs and attaches them invisibly to your prompt.
-3. **Generation**: It tells the AI: "Answer the user's question using ONLY these specific paragraphs." Result: Highly accurate, source-backed answers!
+## ⚙️ Deployment Instructions
+1. Install dependencies: `pip install -r requirements.txt`
+2. Run the platform server: `streamlit run app.py`
+3. Access the clinical workspace at `localhost:8502`.
+4. **Login:** Use `admin` for both Username and Password.

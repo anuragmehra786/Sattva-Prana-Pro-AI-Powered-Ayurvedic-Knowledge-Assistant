@@ -4,7 +4,6 @@ import faiss
 from sentence_transformers import SentenceTransformer
 import streamlit as st
 
-# Load the sentence transformer model - caching to prevent reloading
 @st.cache_resource
 def get_model():
     return SentenceTransformer('all-MiniLM-L6-v2')
@@ -15,43 +14,41 @@ def load_knowledge_base(filepath):
         data = json.load(f)
     return data
 
-def create_vector_db(knowledge_data):
+@st.cache_resource
+def create_vector_db(_knowledge_data):
     """
     Convert knowledge into embeddings and store in FAISS.
-    Returns the FAISS index and the list of documents for retrieval.
+    Returns the FAISS index.
     """
     model = get_model()
-    documents = [item['content'] for item in knowledge_data]
-    
-    # Generate embeddings (returns a numpy array)
+    documents = [item['content'] for item in _knowledge_data]
     embeddings = model.encode(documents)
-    
-    # Dimension of the embeddings
     dimension = embeddings.shape[1]
-    
-    # Initialize FAISS Index (L2 distance)
     index = faiss.IndexFlatL2(dimension)
-    
-    # Add embeddings to the index
     index.add(np.array(embeddings).astype('float32'))
-    
-    return index, knowledge_data
+    return index
 
 def retrieve_relevant_knowledge(query, index, knowledge_data, top_k=3):
     """
     Search FAISS index for the most relevant documents to the query.
+    Returns list of dicts with 'content', 'source', 'topic', 'dosha', 'confidence'.
     """
     model = get_model()
-    # Embed the query
     query_vector = model.encode([query]).astype('float32')
-    
-    # Perform standard vector similarity search
     distances, indices = index.search(query_vector, top_k)
     
     retrieved_results = []
-    for idx in indices[0]:
+    for i, idx in enumerate(indices[0]):
         if idx < len(knowledge_data) and idx != -1:
-            retrieved_results.append(knowledge_data[idx])
+            dist = distances[0][i]
+            # Convert FAISS L2 distance to a pseudo-confidence score (0-100%)
+            # all-MiniLM outputs distances mostly between 0.0 to 1.5. 
+            confidence = max(0.0, min(100.0, 100.0 - (dist * 45)))
+            
+            entry = knowledge_data[idx].copy()
+            entry['confidence'] = round(confidence, 1)
+            entry['distance'] = float(dist)
+            retrieved_results.append(entry)
             
     return retrieved_results
 
