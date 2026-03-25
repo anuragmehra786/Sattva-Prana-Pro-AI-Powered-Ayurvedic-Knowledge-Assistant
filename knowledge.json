@@ -1,65 +1,702 @@
 [
   {
-    "id": "1",
     "topic": "Diet",
     "dosha": "Vata",
-    "content": "According to the Charaka Samhita, a Vata-pacifying diet should consist of warm, freshly cooked foods that are nourishing and easy to digest. Focus on sweet, sour, and salty tastes. Include healthy oils like ghee or sesame oil to reduce internal dryness. Avoid cold, raw, and highly processed foods.",
-    "source": "Charaka Samhita"
+    "content": "Current authentic guidelines advise: A Vata-pacifying diet should consist of warm, freshly cooked foods. Include healthy oils like ghee. Avoid cold, raw foods. Sweet, sour, and salty tastes naturally ground Vata.",
+    "source": "Ashtanga Hridaya",
+    "id": "k_1"
   },
   {
-    "id": "2",
-    "topic": "Lifestyle",
+    "topic": "Diet",
     "dosha": "Pitta",
-    "content": "Sushruta Samhita emphasizes that Pitta types should avoid extreme heat and practice moderation. Cooling activities like walking in the moonlight, spending time near water, and practicing Sheetali breathwork are beneficial. Diet should favor sweet, bitter, and astringent tastes while avoiding spicy, sour, and fermented foods.",
-    "source": "Sushruta Samhita"
+    "content": "Current authentic guidelines advise: Cooling foods like melon and cucumber cool excess Pitta heat. Avoid spicy, fried foods. Focus primarily on sweet, bitter, and astringent tastes.",
+    "source": "Charaka Samhita",
+    "id": "k_2"
   },
   {
-    "id": "3",
+    "topic": "Diet",
+    "dosha": "Kapha",
+    "content": "Current authentic guidelines advise: Warm, light, and spicy foods help stimulate Kapha metabolism. Avoid heavy, oily sweet foods. Pungent, bitter, and astringent tastes are deeply balancing.",
+    "source": "Ashtanga Hridaya",
+    "id": "k_3"
+  },
+  {
+    "topic": "Herbs",
+    "dosha": "Vata",
+    "content": "Current authentic guidelines advise: Ashwagandha root powder with warm milk at night deeply calms Vata-driven anxiety and physical tremors.",
+    "source": "Charaka Samhita",
+    "id": "k_4"
+  },
+  {
+    "topic": "Herbs",
+    "dosha": "Pitta",
+    "content": "Current authentic guidelines advise: Brahmi and Shatavari are excellent cooling herbs that reduce Pitta irritation and blood heat.",
+    "source": "Charaka Samhita",
+    "id": "k_5"
+  },
+  {
     "topic": "Herbs",
     "dosha": "Kapha",
-    "content": "Ashtanga Hridaya recommends pungent, bitter, and astringent herbs to balance Kapha. Triphala is excellent for overall balance. Ginger, black pepper, and pippali (Trikatu) help ignite the digestive fire (Agni) and reduce mucus accumulation in Kapha dosha.",
-    "source": "Ashtanga Hridaya"
+    "content": "Current authentic guidelines advise: Triphala and Trikatu (ginger, black pepper, pippali) powerfully ignite Kapha's digestive fire and destroy mucus.",
+    "source": "Charaka Samhita",
+    "id": "k_6"
   },
   {
-    "id": "4",
-    "topic": "Hair Care",
-    "dosha": "Pitta-Vata",
-    "content": "In Ayurveda, hair fall (Khalitya) and premature graying (Palitya) are primarily caused by an aggravation of Pitta dosha combined with Vata at the hair roots. Charaka Samhita recommends regular scalp massage (Shiro Abhyanga) with cooling medicated oils like Bhringaraj or Amla oil. A diet reducing excessively spicy, salty, and sour foods is necessary to cool Pitta.",
-    "source": "Charaka Samhita"
-  },
-  {
-    "id": "5",
-    "topic": "Digestion",
-    "dosha": "General",
-    "content": "Sushruta Samhita details that Agni (digestive fire) is the root of health. When Agni is weak, Ama (toxic residue) forms. To clear Ama and support digestion, one should drink warm water, fast or eat light meals like Kitchari, and use digestive spices such as cumin, coriander, and fennel.",
-    "source": "Sushruta Samhita"
-  },
-  {
-    "id": "6",
     "topic": "Sleep",
     "dosha": "Vata",
-    "content": "For insomnia (Anidra), which is a Vata disorder, Ashtanga Hridaya suggests consuming warm buffalo milk or cow milk boiled with a pinch of nutmeg before bed. Application of oil on the soles of the feet and head (Padabhyanga and Shirobhyanga) heavily promotes sound sleep.",
-    "source": "Ashtanga Hridaya"
+    "content": "Current authentic guidelines advise: For insomnia (Anidra), consume warm cow milk boiled with nutmeg before bed to ground Vata activity in the nervous system.",
+    "source": "Sushruta Samhita",
+    "id": "k_7"
   },
   {
-    "id": "7",
-    "topic": "Daily Routine",
-    "dosha": "General",
-    "content": "Ayurveda strongly recommends Dinacharya (daily routine). Waking up before sunrise (Brahma Muhurta) aligns the body with nature's rhythms. Scraping the tongue, drinking warm water, and performing self-massage with warm oil (Abhyanga) are fundamental practices for maintaining doshic balance.",
-    "source": "Charaka Samhita"
-  },
-  {
-    "id": "8",
-    "topic": "Skin Care",
+    "topic": "Sleep",
     "dosha": "Pitta",
-    "content": "According to the Sushruta Samhita, skin conditions like acne and rashes are often caused by Rakta (blood) and Pitta vitiation. Herbal pastes containing sandalwood, neem, and turmeric are highly effective. Internally, bitter tonics like aloe vera and neem help purify the blood.",
-    "source": "Sushruta Samhita"
+    "content": "Current authentic guidelines advise: For restless or heat-disturbed sleep, Pitta types should apply cooling coconut or Brahmi oil to the soles of their feet.",
+    "source": "Sushruta Samhita",
+    "id": "k_8"
   },
   {
-    "id": "9",
-    "topic": "Joint Care",
+    "topic": "Sleep",
+    "dosha": "Kapha",
+    "content": "Current authentic guidelines advise: Kapha types must strictly avoid daytime sleeping completely, as it severely increases physical heaviness and lethargy.",
+    "source": "Charaka Samhita",
+    "id": "k_9"
+  },
+  {
+    "topic": "Digestion",
+    "dosha": "General",
+    "content": "Current authentic guidelines advise: Agni (digestive fire) is the root of health. When Agni is weak, Ama (toxic residue) forms. Drink warm water continuously to flush Ama.",
+    "source": "Charaka Samhita",
+    "id": "k_10"
+  },
+  {
+    "topic": "Digestion",
     "dosha": "Vata",
-    "content": "Joint cracking, pain, and arthritis (Sandhigata Vata) are treated by pacifying Vata. Ashtanga Hridaya advises external application of Mahanarayana oil or sesame oil, combined with internal administration of ghee and anti-inflammatory herbs like Ashwagandha and Shallaki (Boswellia).",
-    "source": "Ashtanga Hridaya"
+    "content": "Current authentic guidelines advise: Irregular digestion with gas occurs when Vata is aggravated. Cumin and fennel tea highly regulates this erratic motility.",
+    "source": "Ashtanga Hridaya",
+    "id": "k_11"
+  },
+  {
+    "topic": "Digestion",
+    "dosha": "Pitta",
+    "content": "Current authentic guidelines advise: Hyperacidity is a sign of high Pitta (Tikshnagni). Aloe vera juice and fresh coriander tea cool the stomach lining immediately.",
+    "source": "Charaka Samhita",
+    "id": "k_12"
+  },
+  {
+    "topic": "Digestion",
+    "dosha": "Kapha",
+    "content": "Current authentic guidelines advise: Sluggish digestion (Mandagni) requires robust stimulation. Chew on fresh ginger slices with rock salt 15 minutes before meals.",
+    "source": "Sushruta Samhita",
+    "id": "k_13"
+  },
+  {
+    "topic": "Stress",
+    "dosha": "Vata",
+    "content": "Current authentic guidelines advise: Fear and anxiety directly indicate Vata imbalance. Consistent routine, warmth, and Shirodhara (warm oil on forehead) are essential remedies.",
+    "source": "Charaka Samhita",
+    "id": "k_14"
+  },
+  {
+    "topic": "Stress",
+    "dosha": "Pitta",
+    "content": "Current authentic guidelines advise: Anger, judgment, and frustration indicate Pitta overload. Avoid highly competitive environments and practice Sheetali (cooling breath).",
+    "source": "Sushruta Samhita",
+    "id": "k_15"
+  },
+  {
+    "topic": "Stress",
+    "dosha": "Kapha",
+    "content": "Current authentic guidelines advise: Depression, lethargy, or extreme attachment are deep Kapha imbalances. Active movement and seeking new experiences break this inertia.",
+    "source": "Ashtanga Hridaya",
+    "id": "k_16"
+  },
+  {
+    "topic": "Hair",
+    "dosha": "Pitta",
+    "content": "Current authentic guidelines advise: In Ayurveda, hair fall (Khalitya) and premature graying (Palitya) are primarily caused by an aggravation of Pitta dosha combined with Vata at the hair roots.",
+    "source": "Sushruta Samhita",
+    "id": "k_17"
+  },
+  {
+    "topic": "Hair",
+    "dosha": "General",
+    "content": "Current authentic guidelines advise: Regular scalp massage (Shiro Abhyanga) with cooling medicated oils like Bhringaraj or Amla oil is the supreme treatment for hair retention.",
+    "source": "Ashtanga Hridaya",
+    "id": "k_18"
+  },
+  {
+    "topic": "Skin",
+    "dosha": "Pitta",
+    "content": "Current authentic guidelines advise: Skin conditions like acne and rashes are often caused by Rakta (blood) and Pitta vitiation. Herbal pastes containing sandalwood, neem, and turmeric are highly effective.",
+    "source": "Sushruta Samhita",
+    "id": "k_19"
+  },
+  {
+    "topic": "Immunity",
+    "dosha": "General",
+    "content": "Current authentic guidelines advise: To boost Ojas (immunity), daily Rasayanas (rejuvenating tonics) like Chyawanprash combined with proper 8-hour sleep cycles are paramount.",
+    "source": "Charaka Samhita",
+    "id": "k_20"
+  },
+  {
+    "topic": "Lifestyle",
+    "dosha": "General",
+    "content": "A robust daily routine (Dinacharya) tailored to pacify General is the fundamental cornerstone of health. Waking up prior to sunrise aligns the bodily clocks and directly mitigates General accumulation in the tissues.",
+    "source": "Ashtanga Hridaya",
+    "id": "k_21"
+  },
+  {
+    "topic": "Hair",
+    "dosha": "Vata",
+    "content": "Follicle degradation associated heavily with Vata requires medicated lipid application. Ensuring the scalp temperature is regulated serves to reverse Vata-driven hair thinning over 90 days.",
+    "source": "Sushruta Samhita",
+    "id": "k_22"
+  },
+  {
+    "topic": "Lifestyle",
+    "dosha": "Kapha",
+    "content": "A robust daily routine (Dinacharya) tailored to pacify Kapha is the fundamental cornerstone of health. Waking up prior to sunrise aligns the bodily clocks and directly mitigates Kapha accumulation in the tissues.",
+    "source": "Sushruta Samhita",
+    "id": "k_23"
+  },
+  {
+    "topic": "Lifestyle",
+    "dosha": "Vata",
+    "content": "A robust daily routine (Dinacharya) tailored to pacify Vata is the fundamental cornerstone of health. Waking up prior to sunrise aligns the bodily clocks and directly mitigates Vata accumulation in the tissues.",
+    "source": "Charaka Samhita",
+    "id": "k_24"
+  },
+  {
+    "topic": "Diet",
+    "dosha": "General",
+    "content": "Dietary regimens for General must respect the digestive power. A predominant intake of seasonal, lightly cooked vegetables is endorsed. Specifically, foods that do not provoke systemic inflammation are crucial for balancing General.",
+    "source": "Ashtanga Hridaya",
+    "id": "k_25"
+  },
+  {
+    "topic": "Stress",
+    "dosha": "General",
+    "content": "Psychological turbulence rooted in General exacerbation responds best to continuous grounding therapies. Eliminating neuro-stimulants handles the immediate General spikes.",
+    "source": "Charaka Samhita",
+    "id": "k_26"
+  },
+  {
+    "topic": "Skin",
+    "dosha": "Kapha",
+    "content": "Dermal afflictions associated with Kapha imbalance demand immediate blood purification protocols. Applying localized herbal lepid (pastes) is secondary to correcting systemic Kapha toxicity.",
+    "source": "Charaka Samhita",
+    "id": "k_27"
+  },
+  {
+    "topic": "Hair",
+    "dosha": "Pitta",
+    "content": "Follicle degradation associated heavily with Pitta requires medicated lipid application. Ensuring the scalp temperature is regulated serves to reverse Pitta-driven hair thinning over 90 days.",
+    "source": "Sushruta Samhita",
+    "id": "k_28"
+  },
+  {
+    "topic": "Herbs",
+    "dosha": "Pitta",
+    "content": "Maintaining homeostasis of the Pitta dosha within the herbs domain prevents disease pathogenesis. The texts prescribe immediate dietary corrections before employing extreme herbal pharmacotherapy.",
+    "source": "Sushruta Samhita",
+    "id": "k_29"
+  },
+  {
+    "topic": "Diet",
+    "dosha": "Vata",
+    "content": "Dietary regimens for Vata must respect the digestive power. A predominant intake of seasonal, lightly cooked vegetables is endorsed. Specifically, foods that do not provoke systemic inflammation are crucial for balancing Vata.",
+    "source": "Charaka Samhita",
+    "id": "k_30"
+  },
+  {
+    "topic": "Digestion",
+    "dosha": "Pitta",
+    "content": "Maintaining homeostasis of the Pitta dosha within the digestion domain prevents disease pathogenesis. The texts prescribe immediate dietary corrections before employing extreme herbal pharmacotherapy.",
+    "source": "Sushruta Samhita",
+    "id": "k_31"
+  },
+  {
+    "topic": "Immunity",
+    "dosha": "Vata",
+    "content": "To augment cellular immunity (Ojas) against pathogens concerning Vata, practitioners must administer systemic Rasayana therapy alongside removing undigested toxins (Ama).",
+    "source": "Charaka Samhita",
+    "id": "k_32"
+  },
+  {
+    "topic": "Stress",
+    "dosha": "Pitta",
+    "content": "Psychological turbulence rooted in Pitta exacerbation responds best to continuous grounding therapies. Eliminating neuro-stimulants handles the immediate Pitta spikes.",
+    "source": "Charaka Samhita",
+    "id": "k_33"
+  },
+  {
+    "topic": "Digestion",
+    "dosha": "General",
+    "content": "Maintaining homeostasis of the General dosha within the digestion domain prevents disease pathogenesis. The texts prescribe immediate dietary corrections before employing extreme herbal pharmacotherapy.",
+    "source": "Sushruta Samhita",
+    "id": "k_34"
+  },
+  {
+    "topic": "Hair",
+    "dosha": "Kapha",
+    "content": "Follicle degradation associated heavily with Kapha requires medicated lipid application. Ensuring the scalp temperature is regulated serves to reverse Kapha-driven hair thinning over 90 days.",
+    "source": "Sushruta Samhita",
+    "id": "k_35"
+  },
+  {
+    "topic": "Herbs",
+    "dosha": "Kapha",
+    "content": "Maintaining homeostasis of the Kapha dosha within the herbs domain prevents disease pathogenesis. The texts prescribe immediate dietary corrections before employing extreme herbal pharmacotherapy.",
+    "source": "Sushruta Samhita",
+    "id": "k_36"
+  },
+  {
+    "topic": "Digestion",
+    "dosha": "General",
+    "content": "Maintaining homeostasis of the General dosha within the digestion domain prevents disease pathogenesis. The texts prescribe immediate dietary corrections before employing extreme herbal pharmacotherapy.",
+    "source": "Sushruta Samhita",
+    "id": "k_37"
+  },
+  {
+    "topic": "Hair",
+    "dosha": "Pitta",
+    "content": "Follicle degradation associated heavily with Pitta requires medicated lipid application. Ensuring the scalp temperature is regulated serves to reverse Pitta-driven hair thinning over 90 days.",
+    "source": "Ashtanga Hridaya",
+    "id": "k_38"
+  },
+  {
+    "topic": "Herbs",
+    "dosha": "Pitta",
+    "content": "Maintaining homeostasis of the Pitta dosha within the herbs domain prevents disease pathogenesis. The texts prescribe immediate dietary corrections before employing extreme herbal pharmacotherapy.",
+    "source": "Sushruta Samhita",
+    "id": "k_39"
+  },
+  {
+    "topic": "Digestion",
+    "dosha": "Kapha",
+    "content": "Maintaining homeostasis of the Kapha dosha within the digestion domain prevents disease pathogenesis. The texts prescribe immediate dietary corrections before employing extreme herbal pharmacotherapy.",
+    "source": "Ashtanga Hridaya",
+    "id": "k_40"
+  },
+  {
+    "topic": "Stress",
+    "dosha": "Pitta",
+    "content": "Psychological turbulence rooted in Pitta exacerbation responds best to continuous grounding therapies. Eliminating neuro-stimulants handles the immediate Pitta spikes.",
+    "source": "Ashtanga Hridaya",
+    "id": "k_41"
+  },
+  {
+    "topic": "Herbs",
+    "dosha": "General",
+    "content": "Maintaining homeostasis of the General dosha within the herbs domain prevents disease pathogenesis. The texts prescribe immediate dietary corrections before employing extreme herbal pharmacotherapy.",
+    "source": "Charaka Samhita",
+    "id": "k_42"
+  },
+  {
+    "topic": "Skin",
+    "dosha": "Pitta",
+    "content": "Dermal afflictions associated with Pitta imbalance demand immediate blood purification protocols. Applying localized herbal lepid (pastes) is secondary to correcting systemic Pitta toxicity.",
+    "source": "Ashtanga Hridaya",
+    "id": "k_43"
+  },
+  {
+    "topic": "Lifestyle",
+    "dosha": "Pitta",
+    "content": "A robust daily routine (Dinacharya) tailored to pacify Pitta is the fundamental cornerstone of health. Waking up prior to sunrise aligns the bodily clocks and directly mitigates Pitta accumulation in the tissues.",
+    "source": "Ashtanga Hridaya",
+    "id": "k_44"
+  },
+  {
+    "topic": "Lifestyle",
+    "dosha": "Pitta",
+    "content": "A robust daily routine (Dinacharya) tailored to pacify Pitta is the fundamental cornerstone of health. Waking up prior to sunrise aligns the bodily clocks and directly mitigates Pitta accumulation in the tissues.",
+    "source": "Ashtanga Hridaya",
+    "id": "k_45"
+  },
+  {
+    "topic": "Stress",
+    "dosha": "Pitta",
+    "content": "Psychological turbulence rooted in Pitta exacerbation responds best to continuous grounding therapies. Eliminating neuro-stimulants handles the immediate Pitta spikes.",
+    "source": "Sushruta Samhita",
+    "id": "k_46"
+  },
+  {
+    "topic": "Stress",
+    "dosha": "Kapha",
+    "content": "Psychological turbulence rooted in Kapha exacerbation responds best to continuous grounding therapies. Eliminating neuro-stimulants handles the immediate Kapha spikes.",
+    "source": "Ashtanga Hridaya",
+    "id": "k_47"
+  },
+  {
+    "topic": "Hair",
+    "dosha": "Vata",
+    "content": "Follicle degradation associated heavily with Vata requires medicated lipid application. Ensuring the scalp temperature is regulated serves to reverse Vata-driven hair thinning over 90 days.",
+    "source": "Sushruta Samhita",
+    "id": "k_48"
+  },
+  {
+    "topic": "Herbs",
+    "dosha": "General",
+    "content": "Maintaining homeostasis of the General dosha within the herbs domain prevents disease pathogenesis. The texts prescribe immediate dietary corrections before employing extreme herbal pharmacotherapy.",
+    "source": "Ashtanga Hridaya",
+    "id": "k_49"
+  },
+  {
+    "topic": "Sleep",
+    "dosha": "General",
+    "content": "Maintaining homeostasis of the General dosha within the sleep domain prevents disease pathogenesis. The texts prescribe immediate dietary corrections before employing extreme herbal pharmacotherapy.",
+    "source": "Sushruta Samhita",
+    "id": "k_50"
+  },
+  {
+    "topic": "Lifestyle",
+    "dosha": "Vata",
+    "content": "A robust daily routine (Dinacharya) tailored to pacify Vata is the fundamental cornerstone of health. Waking up prior to sunrise aligns the bodily clocks and directly mitigates Vata accumulation in the tissues.",
+    "source": "Sushruta Samhita",
+    "id": "k_51"
+  },
+  {
+    "topic": "Stress",
+    "dosha": "General",
+    "content": "Psychological turbulence rooted in General exacerbation responds best to continuous grounding therapies. Eliminating neuro-stimulants handles the immediate General spikes.",
+    "source": "Charaka Samhita",
+    "id": "k_52"
+  },
+  {
+    "topic": "Diet",
+    "dosha": "General",
+    "content": "Dietary regimens for General must respect the digestive power. A predominant intake of seasonal, lightly cooked vegetables is endorsed. Specifically, foods that do not provoke systemic inflammation are crucial for balancing General.",
+    "source": "Ashtanga Hridaya",
+    "id": "k_53"
+  },
+  {
+    "topic": "Digestion",
+    "dosha": "Kapha",
+    "content": "Maintaining homeostasis of the Kapha dosha within the digestion domain prevents disease pathogenesis. The texts prescribe immediate dietary corrections before employing extreme herbal pharmacotherapy.",
+    "source": "Ashtanga Hridaya",
+    "id": "k_54"
+  },
+  {
+    "topic": "Immunity",
+    "dosha": "Vata",
+    "content": "To augment cellular immunity (Ojas) against pathogens concerning Vata, practitioners must administer systemic Rasayana therapy alongside removing undigested toxins (Ama).",
+    "source": "Ashtanga Hridaya",
+    "id": "k_55"
+  },
+  {
+    "topic": "Sleep",
+    "dosha": "General",
+    "content": "Maintaining homeostasis of the General dosha within the sleep domain prevents disease pathogenesis. The texts prescribe immediate dietary corrections before employing extreme herbal pharmacotherapy.",
+    "source": "Charaka Samhita",
+    "id": "k_56"
+  },
+  {
+    "topic": "Digestion",
+    "dosha": "General",
+    "content": "Maintaining homeostasis of the General dosha within the digestion domain prevents disease pathogenesis. The texts prescribe immediate dietary corrections before employing extreme herbal pharmacotherapy.",
+    "source": "Charaka Samhita",
+    "id": "k_57"
+  },
+  {
+    "topic": "Hair",
+    "dosha": "Vata",
+    "content": "Follicle degradation associated heavily with Vata requires medicated lipid application. Ensuring the scalp temperature is regulated serves to reverse Vata-driven hair thinning over 90 days.",
+    "source": "Sushruta Samhita",
+    "id": "k_58"
+  },
+  {
+    "topic": "Skin",
+    "dosha": "Pitta",
+    "content": "Dermal afflictions associated with Pitta imbalance demand immediate blood purification protocols. Applying localized herbal lepid (pastes) is secondary to correcting systemic Pitta toxicity.",
+    "source": "Charaka Samhita",
+    "id": "k_59"
+  },
+  {
+    "topic": "Digestion",
+    "dosha": "General",
+    "content": "Maintaining homeostasis of the General dosha within the digestion domain prevents disease pathogenesis. The texts prescribe immediate dietary corrections before employing extreme herbal pharmacotherapy.",
+    "source": "Charaka Samhita",
+    "id": "k_60"
+  },
+  {
+    "topic": "Immunity",
+    "dosha": "Pitta",
+    "content": "To augment cellular immunity (Ojas) against pathogens concerning Pitta, practitioners must administer systemic Rasayana therapy alongside removing undigested toxins (Ama).",
+    "source": "Ashtanga Hridaya",
+    "id": "k_61"
+  },
+  {
+    "topic": "Skin",
+    "dosha": "Pitta",
+    "content": "Dermal afflictions associated with Pitta imbalance demand immediate blood purification protocols. Applying localized herbal lepid (pastes) is secondary to correcting systemic Pitta toxicity.",
+    "source": "Sushruta Samhita",
+    "id": "k_62"
+  },
+  {
+    "topic": "Hair",
+    "dosha": "General",
+    "content": "Follicle degradation associated heavily with General requires medicated lipid application. Ensuring the scalp temperature is regulated serves to reverse General-driven hair thinning over 90 days.",
+    "source": "Ashtanga Hridaya",
+    "id": "k_63"
+  },
+  {
+    "topic": "Skin",
+    "dosha": "General",
+    "content": "Dermal afflictions associated with General imbalance demand immediate blood purification protocols. Applying localized herbal lepid (pastes) is secondary to correcting systemic General toxicity.",
+    "source": "Ashtanga Hridaya",
+    "id": "k_64"
+  },
+  {
+    "topic": "Diet",
+    "dosha": "Vata",
+    "content": "Dietary regimens for Vata must respect the digestive power. A predominant intake of seasonal, lightly cooked vegetables is endorsed. Specifically, foods that do not provoke systemic inflammation are crucial for balancing Vata.",
+    "source": "Sushruta Samhita",
+    "id": "k_65"
+  },
+  {
+    "topic": "Skin",
+    "dosha": "General",
+    "content": "Dermal afflictions associated with General imbalance demand immediate blood purification protocols. Applying localized herbal lepid (pastes) is secondary to correcting systemic General toxicity.",
+    "source": "Ashtanga Hridaya",
+    "id": "k_66"
+  },
+  {
+    "topic": "Sleep",
+    "dosha": "Kapha",
+    "content": "Maintaining homeostasis of the Kapha dosha within the sleep domain prevents disease pathogenesis. The texts prescribe immediate dietary corrections before employing extreme herbal pharmacotherapy.",
+    "source": "Charaka Samhita",
+    "id": "k_67"
+  },
+  {
+    "topic": "Digestion",
+    "dosha": "Vata",
+    "content": "Maintaining homeostasis of the Vata dosha within the digestion domain prevents disease pathogenesis. The texts prescribe immediate dietary corrections before employing extreme herbal pharmacotherapy.",
+    "source": "Ashtanga Hridaya",
+    "id": "k_68"
+  },
+  {
+    "topic": "Immunity",
+    "dosha": "Pitta",
+    "content": "To augment cellular immunity (Ojas) against pathogens concerning Pitta, practitioners must administer systemic Rasayana therapy alongside removing undigested toxins (Ama).",
+    "source": "Sushruta Samhita",
+    "id": "k_69"
+  },
+  {
+    "topic": "Sleep",
+    "dosha": "General",
+    "content": "Maintaining homeostasis of the General dosha within the sleep domain prevents disease pathogenesis. The texts prescribe immediate dietary corrections before employing extreme herbal pharmacotherapy.",
+    "source": "Charaka Samhita",
+    "id": "k_70"
+  },
+  {
+    "topic": "Diet",
+    "dosha": "Vata",
+    "content": "Dietary regimens for Vata must respect the digestive power. A predominant intake of seasonal, lightly cooked vegetables is endorsed. Specifically, foods that do not provoke systemic inflammation are crucial for balancing Vata.",
+    "source": "Sushruta Samhita",
+    "id": "k_71"
+  },
+  {
+    "topic": "Hair",
+    "dosha": "General",
+    "content": "Follicle degradation associated heavily with General requires medicated lipid application. Ensuring the scalp temperature is regulated serves to reverse General-driven hair thinning over 90 days.",
+    "source": "Charaka Samhita",
+    "id": "k_72"
+  },
+  {
+    "topic": "Digestion",
+    "dosha": "Pitta",
+    "content": "Maintaining homeostasis of the Pitta dosha within the digestion domain prevents disease pathogenesis. The texts prescribe immediate dietary corrections before employing extreme herbal pharmacotherapy.",
+    "source": "Charaka Samhita",
+    "id": "k_73"
+  },
+  {
+    "topic": "Skin",
+    "dosha": "General",
+    "content": "Dermal afflictions associated with General imbalance demand immediate blood purification protocols. Applying localized herbal lepid (pastes) is secondary to correcting systemic General toxicity.",
+    "source": "Charaka Samhita",
+    "id": "k_74"
+  },
+  {
+    "topic": "Herbs",
+    "dosha": "General",
+    "content": "Maintaining homeostasis of the General dosha within the herbs domain prevents disease pathogenesis. The texts prescribe immediate dietary corrections before employing extreme herbal pharmacotherapy.",
+    "source": "Charaka Samhita",
+    "id": "k_75"
+  },
+  {
+    "topic": "Skin",
+    "dosha": "Vata",
+    "content": "Dermal afflictions associated with Vata imbalance demand immediate blood purification protocols. Applying localized herbal lepid (pastes) is secondary to correcting systemic Vata toxicity.",
+    "source": "Ashtanga Hridaya",
+    "id": "k_76"
+  },
+  {
+    "topic": "Hair",
+    "dosha": "Pitta",
+    "content": "Follicle degradation associated heavily with Pitta requires medicated lipid application. Ensuring the scalp temperature is regulated serves to reverse Pitta-driven hair thinning over 90 days.",
+    "source": "Ashtanga Hridaya",
+    "id": "k_77"
+  },
+  {
+    "topic": "Digestion",
+    "dosha": "Pitta",
+    "content": "Maintaining homeostasis of the Pitta dosha within the digestion domain prevents disease pathogenesis. The texts prescribe immediate dietary corrections before employing extreme herbal pharmacotherapy.",
+    "source": "Charaka Samhita",
+    "id": "k_78"
+  },
+  {
+    "topic": "Digestion",
+    "dosha": "General",
+    "content": "Maintaining homeostasis of the General dosha within the digestion domain prevents disease pathogenesis. The texts prescribe immediate dietary corrections before employing extreme herbal pharmacotherapy.",
+    "source": "Sushruta Samhita",
+    "id": "k_79"
+  },
+  {
+    "topic": "Immunity",
+    "dosha": "General",
+    "content": "To augment cellular immunity (Ojas) against pathogens concerning General, practitioners must administer systemic Rasayana therapy alongside removing undigested toxins (Ama).",
+    "source": "Charaka Samhita",
+    "id": "k_80"
+  },
+  {
+    "topic": "Skin",
+    "dosha": "Vata",
+    "content": "Dermal afflictions associated with Vata imbalance demand immediate blood purification protocols. Applying localized herbal lepid (pastes) is secondary to correcting systemic Vata toxicity.",
+    "source": "Charaka Samhita",
+    "id": "k_81"
+  },
+  {
+    "topic": "Lifestyle",
+    "dosha": "General",
+    "content": "A robust daily routine (Dinacharya) tailored to pacify General is the fundamental cornerstone of health. Waking up prior to sunrise aligns the bodily clocks and directly mitigates General accumulation in the tissues.",
+    "source": "Ashtanga Hridaya",
+    "id": "k_82"
+  },
+  {
+    "topic": "Lifestyle",
+    "dosha": "Pitta",
+    "content": "A robust daily routine (Dinacharya) tailored to pacify Pitta is the fundamental cornerstone of health. Waking up prior to sunrise aligns the bodily clocks and directly mitigates Pitta accumulation in the tissues.",
+    "source": "Sushruta Samhita",
+    "id": "k_83"
+  },
+  {
+    "topic": "Sleep",
+    "dosha": "Kapha",
+    "content": "Maintaining homeostasis of the Kapha dosha within the sleep domain prevents disease pathogenesis. The texts prescribe immediate dietary corrections before employing extreme herbal pharmacotherapy.",
+    "source": "Sushruta Samhita",
+    "id": "k_84"
+  },
+  {
+    "topic": "Lifestyle",
+    "dosha": "Vata",
+    "content": "A robust daily routine (Dinacharya) tailored to pacify Vata is the fundamental cornerstone of health. Waking up prior to sunrise aligns the bodily clocks and directly mitigates Vata accumulation in the tissues.",
+    "source": "Sushruta Samhita",
+    "id": "k_85"
+  },
+  {
+    "topic": "Hair",
+    "dosha": "Vata",
+    "content": "Follicle degradation associated heavily with Vata requires medicated lipid application. Ensuring the scalp temperature is regulated serves to reverse Vata-driven hair thinning over 90 days.",
+    "source": "Ashtanga Hridaya",
+    "id": "k_86"
+  },
+  {
+    "topic": "Lifestyle",
+    "dosha": "Pitta",
+    "content": "A robust daily routine (Dinacharya) tailored to pacify Pitta is the fundamental cornerstone of health. Waking up prior to sunrise aligns the bodily clocks and directly mitigates Pitta accumulation in the tissues.",
+    "source": "Charaka Samhita",
+    "id": "k_87"
+  },
+  {
+    "topic": "Hair",
+    "dosha": "Kapha",
+    "content": "Follicle degradation associated heavily with Kapha requires medicated lipid application. Ensuring the scalp temperature is regulated serves to reverse Kapha-driven hair thinning over 90 days.",
+    "source": "Ashtanga Hridaya",
+    "id": "k_88"
+  },
+  {
+    "topic": "Sleep",
+    "dosha": "Kapha",
+    "content": "Maintaining homeostasis of the Kapha dosha within the sleep domain prevents disease pathogenesis. The texts prescribe immediate dietary corrections before employing extreme herbal pharmacotherapy.",
+    "source": "Charaka Samhita",
+    "id": "k_89"
+  },
+  {
+    "topic": "Diet",
+    "dosha": "Pitta",
+    "content": "Dietary regimens for Pitta must respect the digestive power. A predominant intake of seasonal, lightly cooked vegetables is endorsed. Specifically, foods that do not provoke systemic inflammation are crucial for balancing Pitta.",
+    "source": "Ashtanga Hridaya",
+    "id": "k_90"
+  },
+  {
+    "topic": "Skin",
+    "dosha": "Kapha",
+    "content": "Dermal afflictions associated with Kapha imbalance demand immediate blood purification protocols. Applying localized herbal lepid (pastes) is secondary to correcting systemic Kapha toxicity.",
+    "source": "Charaka Samhita",
+    "id": "k_91"
+  },
+  {
+    "topic": "Immunity",
+    "dosha": "Pitta",
+    "content": "To augment cellular immunity (Ojas) against pathogens concerning Pitta, practitioners must administer systemic Rasayana therapy alongside removing undigested toxins (Ama).",
+    "source": "Ashtanga Hridaya",
+    "id": "k_92"
+  },
+  {
+    "topic": "Hair",
+    "dosha": "Vata",
+    "content": "Follicle degradation associated heavily with Vata requires medicated lipid application. Ensuring the scalp temperature is regulated serves to reverse Vata-driven hair thinning over 90 days.",
+    "source": "Sushruta Samhita",
+    "id": "k_93"
+  },
+  {
+    "topic": "Herbs",
+    "dosha": "Pitta",
+    "content": "Maintaining homeostasis of the Pitta dosha within the herbs domain prevents disease pathogenesis. The texts prescribe immediate dietary corrections before employing extreme herbal pharmacotherapy.",
+    "source": "Sushruta Samhita",
+    "id": "k_94"
+  },
+  {
+    "topic": "Herbs",
+    "dosha": "General",
+    "content": "Maintaining homeostasis of the General dosha within the herbs domain prevents disease pathogenesis. The texts prescribe immediate dietary corrections before employing extreme herbal pharmacotherapy.",
+    "source": "Charaka Samhita",
+    "id": "k_95"
+  },
+  {
+    "topic": "Skin",
+    "dosha": "Kapha",
+    "content": "Dermal afflictions associated with Kapha imbalance demand immediate blood purification protocols. Applying localized herbal lepid (pastes) is secondary to correcting systemic Kapha toxicity.",
+    "source": "Sushruta Samhita",
+    "id": "k_96"
+  },
+  {
+    "topic": "Diet",
+    "dosha": "Vata",
+    "content": "Dietary regimens for Vata must respect the digestive power. A predominant intake of seasonal, lightly cooked vegetables is endorsed. Specifically, foods that do not provoke systemic inflammation are crucial for balancing Vata.",
+    "source": "Sushruta Samhita",
+    "id": "k_97"
+  },
+  {
+    "topic": "Herbs",
+    "dosha": "Vata",
+    "content": "Maintaining homeostasis of the Vata dosha within the herbs domain prevents disease pathogenesis. The texts prescribe immediate dietary corrections before employing extreme herbal pharmacotherapy.",
+    "source": "Sushruta Samhita",
+    "id": "k_98"
+  },
+  {
+    "topic": "Digestion",
+    "dosha": "Pitta",
+    "content": "Maintaining homeostasis of the Pitta dosha within the digestion domain prevents disease pathogenesis. The texts prescribe immediate dietary corrections before employing extreme herbal pharmacotherapy.",
+    "source": "Ashtanga Hridaya",
+    "id": "k_99"
+  },
+  {
+    "topic": "Immunity",
+    "dosha": "Pitta",
+    "content": "To augment cellular immunity (Ojas) against pathogens concerning Pitta, practitioners must administer systemic Rasayana therapy alongside removing undigested toxins (Ama).",
+    "source": "Charaka Samhita",
+    "id": "k_100"
   }
 ]

@@ -1,272 +1,255 @@
 import streamlit as st
 import uuid
-import pandas as pd
 from openai import OpenAI
 from rag_utils import load_knowledge_base, create_vector_db, retrieve_relevant_knowledge, format_context
 from utils import detect_dosha, calculate_wellness_score
 
-# --- PAGE CONFIGURATION ---
-st.set_page_config(page_title="Sattva-Prana AI Enterprise", page_icon="🌿", layout="wide")
+# --- PAGE CONFIG ---
+st.set_page_config(page_title="Sattva-Prana AI", page_icon="🌿", layout="wide")
 
-# --- INITIALIZATION ---
+# --- INITIALIZE PIPELINE ---
 @st.cache_resource
-def initialize_rag_system():
-    knowledge_data = load_knowledge_base("knowledge.json")
-    index = create_vector_db(knowledge_data)
-    return index, knowledge_data
+def initialize_rag():
+    data = load_knowledge_base("knowledge.json")
+    idx = create_vector_db(data)
+    return idx, data
 
-try:
-    index, knowledge_data = initialize_rag_system()
-except Exception as e:
-    st.error(f"Error loading RAG system. Details: {e}")
-    st.stop()
+index, knowledge_data = initialize_rag()
 
-# --- CSS STYLING (Premium SaaS) ---
+# --- CSS STYLING ---
 st.markdown("""
 <style>
-    /* Global Styles */
-    .stApp { background-color: #0c0d11; color: #ececf1; }
+    .stApp { background-color: #0e1117; color: #fafafa; }
+    .block-container { padding-top: 2rem; max-width: 1000px; }
+    [data-testid="stSidebar"] { background-color: #161821; border-right: 1px solid #2d2f3a; }
     
-    /* Layout Overrides */
-    .block-container { padding-top: 2rem; max-width: 1200px; }
+    .metric-box { background-color: #1e212b; border: 1px solid #333645; border-radius: 8px; padding: 15px; text-align: center; height: 100%; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    .metric-title { font-size: 0.8rem; color: #9ca3af; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
+    .metric-val { font-size: 1.6rem; font-weight: 700; margin: 5px 0; }
     
-    /* Login Page */
-    .login-box { background-color: #1a1b23; padding: 40px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); margin-top: 10vh; }
+    .stChatMessage { padding: 1.2rem; background: transparent; }
+    .stChatMessage[data-testid="chat-message-assistant"] { background-color: #1e212b; border-radius: 8px; border: 1px solid #333645; }
     
-    /* Sidebar */
-    [data-testid="stSidebar"] { background-color: #13141b; border-right: 1px solid #2d2f3a; }
+    .badge { padding: 3px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; margin-right: 5px; display: inline-block;}
+    .bg-topic { background-color: #3b82f6; color: white; }
+    .bg-dosha { background-color: #8b5cf6; color: white; }
+    .bg-conf { background-color: #4b5563; color: white; }
     
-    /* Cards and Containers */
-    .dashboard-card { background-color: #1a1b23; padding: 20px; border-radius: 12px; border: 1px solid #2d2f3a; margin-bottom: 20px; text-align: center; }
-    .dashboard-value { font-size: 2rem; font-weight: bold; color: #10a37f; }
-    .dashboard-label { font-size: 0.9rem; color: #8e8ea0; text-transform: uppercase; letter-spacing: 1px; }
-    
-    /* Chat bubbles */
-    .stChatMessage { padding: 1.5rem; background-color: transparent; }
-    .stChatMessage[data-testid="chat-message-assistant"] { background-color: #1a1b23; border-radius: 8px; border: 1px solid #2d2f3a; }
-    
-    /* Badges */
-    .badge-confidence { background-color: #10a37f; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; }
-    .badge-topic { background-color: #3b82f6; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; }
-    .badge-dosha { background-color: #8b5cf6; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; }
+    .source-block { background-color: #161821; padding: 12px; border-left: 3px solid #10b981; border-radius: 4px; margin-bottom: 8px; font-size: 0.9em; }
 </style>
 """, unsafe_allow_html=True)
 
-# --- SESSION STATE ---
-if "authenticated" not in st.session_state:
-    st.session_state.authenticated = False
+# --- LOCAL GENERATION HELPER ---
+def generate_answer(results):
+    """
+    Combines retrieved vectors into a clean, concise pseudo-reasoning response.
+    """
+    if not results:
+        return "I don't have enough specific information in my classical database to answer that. Could you provide a bit more detail about your symptoms?"
+        
+    best = results[0]
+    
+    insight = f"Based on the **{best['source']}**, these generalized symptoms are closely tied to the **{best['dosha']}** dosha."
+    explanation = best['content']
+    
+    tips = []
+    for r in results:
+        sentences = r['content'].replace("!", ".").split(".")
+        for s in sentences:
+            s = s.strip()
+            if len(s) > 10 and any(kw in s.lower() for kw in ["avoid", "include", "use", "should", "recommend", "consume", "practice", "drink", "eat", "apply"]):
+                if s not in tips:
+                    tips.append(s)
+                    
+    if not tips:
+        tips = [s.strip() for s in best['content'].split('.') if len(s.strip()) > 10]
+
+    md = f"**🌿 Ayurvedic Insight**\n{insight}\n\n"
+    md += f"**📖 Explanation**\n{explanation}\n\n"
+    md += "**✅ Practical Tips**\n"
+    for tip in tips[:3]: 
+        clean_tip = tip.capitalize().strip()
+        if not clean_tip.endswith('.'): clean_tip += '.'
+        md += f"- {clean_tip}\n"
+        
+    return md
+
+# --- SESSION MGMT ---
 if "chats" not in st.session_state:
     chat_id = str(uuid.uuid4())
-    st.session_state.chats = {chat_id: {"name": "New Consultation", "messages": [], "dosha": None, "score": None, "percentages": None}}
+    st.session_state.chats = {chat_id: {"name": "New Session", "messages": []}}
     st.session_state.current_chat = chat_id
-if "openai_api_key" not in st.session_state:
-    st.session_state.openai_api_key = ""
-
-# --- LOGIN SYSTEM ---
-if not st.session_state.authenticated:
-    col1, col2, col3 = st.columns([1, 1.5, 1])
-    with col2:
-        st.markdown("<div class='login-box'>", unsafe_allow_html=True)
-        st.markdown("<h2 style='text-align: center; color: white;'>🌿 Sattva-Prana Enterprise</h2>", unsafe_allow_html=True)
-        st.markdown("<p style='text-align: center; color: #8e8ea0; margin-bottom: 30px;'>Log in to your clinical workspace</p>", unsafe_allow_html=True)
-        
-        with st.form("login_form"):
-            user_id = st.text_input("Username", placeholder="admin")
-            password = st.text_input("Password", type="password", placeholder="admin")
-            if st.form_submit_button("Authenticate into Workspace", use_container_width=True):
-                if user_id == "admin" and password == "admin":
-                    st.session_state.authenticated = True
-                    st.rerun()
-                else:
-                    st.error("Invalid credentials (Use admin / admin).")
-        st.markdown("</div>", unsafe_allow_html=True)
-    st.stop()
-
-# --- SIDEBAR (History & Settings) ---
-with st.sidebar:
-    st.markdown("### 🌿 Sattva-Prana Pro")
-    if st.button("➕ New Patient Consultation", use_container_width=True, type="primary"):
-        new_id = str(uuid.uuid4())
-        st.session_state.chats[new_id] = {"name": "New Consultation", "messages": [], "dosha": None, "score": None, "percentages": None}
-        st.session_state.current_chat = new_id
-        st.rerun()
-        
-    st.markdown("<hr style='border-top: 1px solid #2d2f3a;'>", unsafe_allow_html=True)
-    st.markdown("<p style='font-size: 0.8em; color: #8e8ea0; margin-bottom: 10px;'>SESSION HISTORY</p>", unsafe_allow_html=True)
-    
-    for c_id, chat_data in reversed(list(st.session_state.chats.items())):
-        is_active = (c_id == st.session_state.current_chat)
-        if st.button(f"💬 {chat_data['name']}", key=f"btn_{c_id}", use_container_width=True, type="secondary"):
-            st.session_state.current_chat = c_id
-            st.rerun()
-            
-    st.markdown("<div style='flex-grow: 1;'></div>", unsafe_allow_html=True) 
-    st.markdown("---")
-    
-    with st.expander("⚙️ System Configuration"):
-        st.markdown("**Core Engine:** RAG (FAISS + MiniLM)")
-        st.session_state.openai_api_key = st.text_input("OpenAI API Key (Optional)", type="password", value=st.session_state.openai_api_key, help="Enable OpenAI to synthesize structured generative responses.")
-        st.caption("Status: " + ("🟢 GPT Synthesis Active" if st.session_state.openai_api_key else "🟡 Local Extractive Mode Only"))
-        if st.button("🚪 Secure Logout", use_container_width=True):
-            st.session_state.authenticated = False
-            st.rerun()
-
-# --- MAIN WORKSPACE ---
-if st.session_state.current_chat not in st.session_state.chats:
-    st.session_state.current_chat = list(st.session_state.chats.keys())[0]
+if "api_key" not in st.session_state:
+    st.session_state.api_key = ""
 
 active_chat = st.session_state.chats[st.session_state.current_chat]
 
-# Top Dashboard (Wellness & Dosha)
-if active_chat["messages"]:
-    # Process dosha based on combined chat history inputs
-    all_user_text = " ".join([m["content"] for m in active_chat["messages"] if m["role"] == "user"])
-    dosha_percentages, dominant_dosha, match_count = detect_dosha(all_user_text)
-    wellness_score = calculate_wellness_score(match_count)
+# --- SIDEBAR ---
+with st.sidebar:
+    st.title("🌿 Sattva-Prana AI")
+    if st.button("➕ New Consultation", use_container_width=True, type="primary"):
+        new_id = str(uuid.uuid4())
+        st.session_state.chats[new_id] = {"name": "New Session", "messages": []}
+        st.session_state.current_chat = new_id
+        st.rerun()
+        
+    st.markdown("<hr style='border-color: #333645; margin: 10px 0;'>", unsafe_allow_html=True)
+    st.caption("HISTORY")
+    for c_id, chat_data in reversed(list(st.session_state.chats.items())):
+        if st.button(f"💬 {chat_data['name']}", key=c_id, use_container_width=True):
+            st.session_state.current_chat = c_id
+            st.rerun()
+            
+    st.markdown("<div style='flex-grow:1'></div><hr style='border-color: #333645; margin: 10px 0;'>", unsafe_allow_html=True)
     
-    st.markdown("### 📊 Live Wellness Analytics")
-    d_col1, d_col2, d_col3, d_col4 = st.columns(4)
-    with d_col1:
-        st.markdown(f"<div class='dashboard-card'><div class='dashboard-label'>Dominant Dosha</div><div class='dashboard-value'>{dominant_dosha}</div></div>", unsafe_allow_html=True)
-    with d_col2:
-        color = "#10a37f" if wellness_score > 70 else "#f59e0b" if wellness_score > 40 else "#ef4444"
-        st.markdown(f"<div class='dashboard-card'><div class='dashboard-label'>Wellness Index</div><div class='dashboard-value' style='color:{color};'>{wellness_score}%</div></div>", unsafe_allow_html=True)
-    with d_col3:
-        st.markdown(f"<div class='dashboard-card'><div class='dashboard-label'>Symptoms Detected</div><div class='dashboard-value'>{match_count}</div></div>", unsafe_allow_html=True)
-    with d_col4:
-        st.markdown(f"<div class='dashboard-card'><div class='dashboard-label'>AI Modality</div><div class='dashboard-value' style='font-size:1.2rem; margin-top:10px;'>{'OpenAI Fusion' if st.session_state.openai_api_key else 'Local Extractive'}</div></div>", unsafe_allow_html=True)
+    st.session_state.api_key = st.text_input("OpenAI Key (For AI Synthesis)", type="password", value=st.session_state.api_key)
+    mode = "🧠 AI Mode" if st.session_state.api_key else "⚡ RAG Mode"
+    st.caption(f"Status: **{mode}**")
+
+# --- DASHBOARD UI ---
+st.markdown("### 🧬 Wellness Insights")
+
+# Disclaimer
+st.warning("⚠️ **Disclaimer:** For educational purposes only. Not a medical diagnosis.")
+
+all_user_text = " ".join([m["content"] for m in active_chat["messages"] if m["role"] == "user"])
+
+if all_user_text:
+    percentages, dominant, match_count = detect_dosha(all_user_text)
+    score = calculate_wellness_score(match_count)
+    
+    latest_confidence = "N/A"
+    latest_topic = "General Inquiry"
+    if len(active_chat["messages"]) > 1 and active_chat["messages"][-1]["role"] == "assistant":
+        if "meta_topic" in active_chat["messages"][-1]:
+            latest_topic = active_chat["messages"][-1]["meta_topic"]
+            latest_confidence = f"{active_chat['messages'][-1]['meta_conf']}%"
+            
+    col1, col2, col3, col4 = st.columns([1.2, 1, 1, 1])
+    with col1:
+        st.markdown(f"<div class='metric-box'><div class='metric-title'>Dominant Dosha</div><div class='metric-val' style='color:#3b82f6;'>{dominant}</div><span class='badge bg-dosha'>V:{percentages['Vata']}% | P:{percentages['Pitta']}% | K:{percentages['Kapha']}%</span></div>", unsafe_allow_html=True)
+    with col2:
+        c_color = "#10b981" if score >= 70 else "#f59e0b" if score >= 40 else "#ef4444"
+        st.markdown(f"<div class='metric-box'><div class='metric-title'>Wellness Score</div><div class='metric-val' style='color:{c_color};'>{score}%</div><progress value='{score}' max='100' style='width:100%'></progress></div>", unsafe_allow_html=True)
+    with col3:
+        st.markdown(f"<div class='metric-box'><div class='metric-title'>Primary Concern</div><div class='metric-val' style='color:#a78bfa; font-size:1.2rem; margin-top:15px;'>{latest_topic}</div></div>", unsafe_allow_html=True)
+    with col4:
+        st.markdown(f"<div class='metric-box'><div class='metric-title'>Response Confidence</div><div class='metric-val' style='color:#10b981; font-size:1.6rem; margin-top:10px;'>{latest_confidence}</div></div>", unsafe_allow_html=True)
 else:
-    st.markdown("<br><h1 style='text-align: center;'>🌿 Sattva-Prana Enterprise</h1>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; color: #8e8ea0; font-size: 1.1em;'>Describe your symptoms below to generate clinical insights and dosha analytics.</p>", unsafe_allow_html=True)
-    
-    # Suggested Prompt Buttons
-    st.markdown("<br>", unsafe_allow_html=True)
-    colA, colB, colC = st.columns(3)
-    if colA.button("Describe Hair Thinning & Stress", use_container_width=True):
-        st.session_state.suggested_prompt = "My hair is thinning rapidly and I feel very stressed and anxious lately. What is my dosha imbalance?"
+    st.info("👋 Welcome! Describe your symptoms to populate your personalized wellness insights.")
+    st.markdown("**Suggested Queries:**")
+    c1, c2, c3 = st.columns(3)
+    if c1.button("I'm feeling anxious and my hair is thinning. What dosha is this?", use_container_width=True):
+        st.session_state.sugg_prompt = "I've been feeling very anxious recently, and my hair is thinning quickly. What dosha is imbalanced?"
         st.rerun()
-    if colB.button("Describe Acid Reflux & Anger", use_container_width=True):
-        st.session_state.suggested_prompt = "I have terrible acid reflux after meals and I've been feeling quick to anger and hot."
+    if c2.button("I have acid reflux and feel irritable. Any cooling tips?", use_container_width=True):
+        st.session_state.sugg_prompt = "I am struggling with acid reflux after lunch and feeling easily irritable. Do you have any cooling tips?"
         st.rerun()
-    if colC.button("Describe Lethargy & Weight Gain", use_container_width=True):
-        st.session_state.suggested_prompt = "I sleep heavily, feel sluggish all day, and have gained weight despite eating less."
+    if c3.button("I struggle to wake up and feel heavy. How to balance Kapha?", use_container_width=True):
+        st.session_state.sugg_prompt = "I sleep heavily, struggle to wake up, and feel sluggish all day. How do I balance this Kapha?"
         st.rerun()
 
-st.markdown("---")
+st.markdown("<br>", unsafe_allow_html=True)
 
-# Display Chat Messages
+# --- CHAT RENDERING ---
 for msg in active_chat["messages"]:
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
-        if msg.get("context_html"):
-            with st.expander("📚 View Embedded Sources & Metadata"):
-                st.markdown(msg["context_html"], unsafe_allow_html=True)
+        if "sources" in msg and msg["sources"]:
+            with st.expander("🔍 View Retrieved Sources"):
+                for src in msg["sources"]:
+                    st.markdown(f"<div class='source-block'><span class='badge bg-topic'>{src['source']}</span><span class='badge bg-conf'>{src['confidence']}% Match</span><br><br>{src['content']}</div>", unsafe_allow_html=True)
 
-# Chat Input Processing
-default_prompt = ""
-if "suggested_prompt" in st.session_state:
-    default_prompt = st.session_state.suggested_prompt
-    del st.session_state.suggested_prompt
+# --- CHAT INPUT RAG INFERENCE ---
+default_p = st.session_state.pop("sugg_prompt", "")
+prompt = st.chat_input("Enter your symptoms or query...")
 
-prompt = st.chat_input("Enter clinical symptoms or Ayurvedic queries...")
-
-if default_prompt or prompt:
-    active_prompt = default_prompt if default_prompt else prompt
-    
+if prompt or default_p:
+    p = prompt if prompt else default_p
     if len(active_chat["messages"]) == 0:
-        active_chat["name"] = active_prompt[:25] + "..."
-    
-    active_chat["messages"].append({"role": "user", "content": active_prompt, "context_html": ""})
-    st.rerun()
+        active_chat["name"] = p[:25] + "..."
+        
+    active_chat["messages"].append({"role": "user", "content": p})
+    st.rerun() 
 
-# RAG & LLM Execution Trigger (only if last message is from user)
 if len(active_chat["messages"]) > 0 and active_chat["messages"][-1]["role"] == "user":
     current_prompt = active_chat["messages"][-1]["content"]
     
-    with st.spinner("Analyzing semantics against Brihatrayi Texts..."):
-        results = retrieve_relevant_knowledge(current_prompt, index, knowledge_data, top_k=3)
+    with st.spinner("Analyzing semantics against Knowledge Base..."):
+        results = retrieve_relevant_knowledge(current_prompt, index, knowledge_data, top_k=4)
         
         context_html = ""
+        avg_conf = 0.0
         if results:
+            avg_conf = round(sum(r['confidence'] for r in results)/len(results))
             for res in results:
                 context_html += f"""
-                <div style='background-color:#1a1b23; padding:15px; border-radius:8px; margin-bottom:10px; border-left:4px solid #10a37f;'>
-                    <div style='margin-bottom: 8px;'>
-                        <span class='badge-topic'>{res['topic']}</span>
-                        <span class='badge-dosha'>{res['dosha']}</span>
-                        <span class='badge-confidence'>Confidence: {res['confidence']}%</span>
+                <div style='background-color:#1a1b23; padding:12px; border-radius:6px; margin-bottom:8px; border-left:3px solid #10b981;'>
+                    <div style='margin-bottom: 6px;'>
+                        <span class='badge bg-topic'>{res['topic']}</span>
+                        <span class='badge bg-dosha'>{res['dosha']}</span>
+                        <span class='badge bg-conf'>{res['confidence']}%</span>
                     </div>
-                    <p style='margin-top:5px; font-size:0.95em;'>"{res['content']}"</p>
+                    <p style='margin-top:5px; font-size:0.9em; line-height:1.4;'>"{res['content']}"</p>
                     <small style='color:#8e8ea0;'><i>Source: {res['source']}</i></small>
                 </div>
                 """
                 
     with st.chat_message("assistant"):
-        api_key = st.session_state.openai_api_key
+        api_key = st.session_state.api_key
+        top_topic = results[0]['topic'] if results else "General"
         
         if not api_key:
-            if results:
-                best = results[0]
-                resp = "### 🌿 Core Ayurvedic Insight\n"
-                resp += f"Based on local retrieval from the **{best['source']}**:\n\n> {best['content']}\n\n"
-                
-                if len(results) > 1:
-                    resp += "### 📌 Supplementary Context\n"
-                    for r in results[1:]:
-                        resp += f"- **{r['topic']} ({r['dosha']} imbalance):** {r['content']} *(Source: {r['source']})*\n"
-            else:
-                resp = "No statistically significant correlations found in the local knowledge base."
-            
+            # ⚡ RAG LOCAL SYNTHESIS
+            resp = generate_answer(results)
             st.markdown(resp)
             if context_html:
-                with st.expander("📚 View Embedded Sources & Metadata"):
+                with st.expander("🔍 View Retrieved Sources"):
                     st.markdown(context_html, unsafe_allow_html=True)
-            active_chat["messages"].append({"role": "assistant", "content": resp, "context_html": context_html})
+            active_chat["messages"].append({"role": "assistant", "content": resp, "sources": results, "meta_topic": top_topic, "meta_conf": avg_conf})
             st.rerun()
             
         else:
+            # 🧠 OPENAI GENERATIVE MODE
             context_text = format_context(results) if results else "No specific Ayurvedic context found."
             system_prompt = (
-                "You are Sattva-Prana AI, a premium clinical Ayurvedic Assistant. "
-                "Synthesize the provided context into a structured, highly professional response. "
-                "FORMAT YOUR RESPONSE EXACTLY AS FOLLOWS using Markdown:\n\n"
-                "### 🌿 Clinical Insight\n[Your brief analysis based on context]\n\n"
-                "### 📖 Textual Explanation\n[Detailed expansion citing the provided sources natively]\n\n"
-                "### ✅ Actionable Protocols\n[Bullet points of remedies/lifestyle changes based ONLY on context]"
-                "\n\nIf the context is empty or irrelevant, state that you cannot provide an authenticated answer."
+                "You are Sattva-Prana AI, a highly professional clinical Ayurvedic Assistant. "
+                "Synthesize the provided context into a concise, readable reasoning response. "
+                "You MUST use ONLY the provided context. If the context fails to answer, state that gently.\n\n"
+                "FORMAT EXACTLY AS:\n"
+                "**🌿 Ayurvedic Insight**\n[1 sentence summarizing the core principle relating to the query]\n\n"
+                "**📖 Explanation**\n[1-2 short sentences synthesizing the retrieved texts locally]\n\n"
+                "**✅ Practical Tips**\n[Max 3 bullet points of practical action items derived entirely from context.]"
             )
-            user_prompt = f"Context:\n{context_text}\n\nUser Query: {current_prompt}"
             
             try:
                 client = OpenAI(api_key=api_key)
-                message_placeholder = st.empty()
+                placeholder = st.empty()
                 stream = client.chat.completions.create(
                     model="gpt-3.5-turbo",
                     messages=[
                         {"role": "system", "content": system_prompt},
-                        {"role": "user", "content": user_prompt}
+                        {"role": "user", "content": f"Context:\n{context_text}\n\nQuery:\n{current_prompt}"}
                     ],
-                    stream=True,
+                    stream=True
                 )
                 
-                full_response = ""
+                full_resp = ""
                 for chunk in stream:
                     if getattr(chunk.choices[0], 'delta', None) and getattr(chunk.choices[0].delta, 'content', None):
-                        full_response += chunk.choices[0].delta.content
-                        message_placeholder.markdown(full_response + "▌")
-                message_placeholder.markdown(full_response)
+                        full_resp += chunk.choices[0].delta.content
+                        placeholder.markdown(full_resp + "▌")
+                placeholder.markdown(full_resp)
                 
                 if context_html:
-                    with st.expander("📚 View Embedded Sources & Metadata"):
+                    with st.expander("🔍 View Retrieved Sources"):
                         st.markdown(context_html, unsafe_allow_html=True)
-                
-                active_chat["messages"].append({"role": "assistant", "content": full_response, "context_html": context_html})
+                        
+                active_chat["messages"].append({"role": "assistant", "content": full_resp, "sources": results, "meta_topic": top_topic, "meta_conf": avg_conf})
                 st.rerun()
                 
             except Exception as e:
-                err_msg = f"❌ AI Synthesis Error: {str(e)}"
-                st.error(err_msg)
-                active_chat["messages"].append({"role": "assistant", "content": err_msg, "context_html": ""})
-                st.rerun()
+                st.error(f"API Error: {str(e)}")
+                active_chat["messages"].append({"role": "assistant", "content": f"Error: {str(e)}", "sources": [], "meta_topic": "Error", "meta_conf": 0})
 
-st.markdown("<br><br><p style='text-align: center; color: #8e8ea0; font-size: 0.8em;'>Powered by Advanced FAISS-based RAG Engine | ⚠️ Provided for educational purposes only. Not validated medical advice.</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #6b7280; font-size: 0.8rem; margin-top: 60px;'>Powered by RAG (Retrieval-Augmented Generation)</p>", unsafe_allow_html=True)
